@@ -53,7 +53,6 @@ export class UserRepository {
   protected getUserByPhoneNumber(phoneNumber: string) {
     const user = this.userList.find((user) => user.phoneNumber === phoneNumber);
     if (!user) throw new Error(`User not found with (${phoneNumber})`);
-
     return user;
   }
   protected getByUserName(firstName: string, lastName: string) {

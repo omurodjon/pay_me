@@ -1,4 +1,3 @@
-import { faker } from "@faker-js/faker";
 import { User } from "../entities";
 import { UserRepository } from "../repository";
 
@@ -23,16 +22,10 @@ export class UserService extends UserRepository {
     this.create(user);
   }
 
-  searchUser(firstName: string, lastName: string) {
-    const userSearch = this.getByUserName(firstName, lastName);
-
-    if (!userSearch) {
-      throw new Error("User not found");
-    }
-    return userSearch;
-  }
-
   getUserList() {
     return this.getList();
+  }
+  getUserName() {
+    return this.getByUserName;
   }
 }

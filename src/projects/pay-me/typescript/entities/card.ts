@@ -2,26 +2,29 @@ import { BANK_NAME, CARD_TYPE } from "../types";
 import { faker } from "@faker-js/faker";
 
 export class Card {
-	private id: string;
-	constructor(
-		public number: string,
-		private pin: string,
-		public expiry: string,
-		public cardType: CARD_TYPE,
-		private balance: number,
-		private ownerId: string,
-		public bankName: BANK_NAME
-	) {}
+  private id: string;
+  constructor(
+    public number: string,
+    private pin: string,
+    public expiry: string,
+    public cardType: CARD_TYPE,
+    private balance: number,
+    private ownerId: string,
+    public bankName: BANK_NAME
+  ) {}
 
-	getId() {
-		return this.id;
-	}
+  getId() {
+    return this.id;
+  }
 
-	setId(id: string) {
-		this.id = id;
-	}
+  setId(id: string) {
+    this.id = id;
+  }
 
-	getOwnerId() {
-		return this.ownerId;
-	}
+  getOwnerId() {
+    return this.ownerId;
+  }
+  getList() {
+    return;
+  }
 }
