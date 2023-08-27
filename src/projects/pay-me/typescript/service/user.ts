@@ -1,3 +1,4 @@
+import { faker } from "@faker-js/faker";
 import { User } from "../entities";
 import { UserRepository } from "../repository";
 

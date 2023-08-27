@@ -13,6 +13,7 @@ export const dashboard = (
 		<h4 class="navbar-brand">${user.firstName} ${user.lastName}</h4>
 		<form class="form-inline d-flex gap-2">
 				<select class="form-select" id="inputGroupSelect01">
+				<option class="all-option">All</option>
 				</select>
 				<input
 						class="form-control mr-sm-2 searchInput"
@@ -25,20 +26,32 @@ export const dashboard = (
 				</button>
 		</form>
 </nav>
-<header
-style="
-		height: 80%;
-		width: 150px;
-		align-items: center;
-		justify-content: center;
-		flex-direction: column;
-		gap: 10px;
-"
+<div class="cards"></div>
+
 
 `);
-  const selOptions: HTMLOptionElement = doc;
+  const selOptions: HTMLSelectElement = document.querySelector(
+    "#inputGroupSelect01"
+  );
   for (let i = 0; i < userService.getUserList().length; i++) {
     const options = document.createElement("option");
     options.className = "option";
+    options.innerText = userService.getUserList()[i].firstName;
+    options.value = `${userService.getUserList()[i].firstName}`;
+    selOptions.appendChild(options);
   }
+
+  function sorted() {
+    const cards: HTMLDivElement = document.querySelector(".cards");
+    for (let i = 0; i < 10; i++) {
+      let cardNumbers = faker.finance.creditCardNumber();
+      console.log(cardNumbers);
+      const div = document.createElement("p");
+      div.className = "span";
+      div.innerText = `${cardNumbers} `;
+      cards.append(div);
+    }
+  }
+
+  sorted();
 };
