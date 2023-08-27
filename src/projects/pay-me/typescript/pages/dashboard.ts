@@ -1,4 +1,3 @@
-import { faker } from "@faker-js/faker";
 import { User } from "./../entities/user";
 import { CardService, UserService } from "../service";
 import { BANK_NAME, CARD_TYPE, EXPIRE } from "../types";
@@ -42,6 +41,7 @@ export const dashboard = (
 
 
 `);
+  const table: HTMLTableElement = document.querySelector(".table");
   const expire: EXPIRE[] = ["01/27", "23/28", "6/26", "17/29"];
   const card: CARD_TYPE[] = ["UZCARD", "HUMO", "VISA", "MASTERCARD"];
   const bankName: BANK_NAME[] = ["NBU", "TBC", "SQB", "GRANT"];
@@ -59,10 +59,12 @@ export const dashboard = (
 
   for (let i = 0; i < userService.getUserList().length; i++) {
     const tr = document.createElement("tr");
+    tr.className = "tbody-tr";
     const typeIdx: number = Math.floor(Math.random() * 4);
     const th = document.createElement("th");
     th.scope = "row";
     th.innerText = `${i + 1}`;
+    th.className = "tbody-th";
     tr.append(th);
     tbody.appendChild(tr);
 
@@ -82,4 +84,17 @@ export const dashboard = (
     td4.innerText = `${bankName[i]}`;
     td5.innerText = `${expire[i]}`;
   }
+
+  const th: HTMLTableHeaderCellElement = document.querySelector(".tbody-th");
+  const tr: HTMLTableRowElement = document.querySelector(".tbody-tr");
+  selOptions.addEventListener("change", (e) => {
+    e.preventDefault();
+    table.innerHTML = "";
+    for (let i = 0; i < userService.getUserList().length; i++) {
+      if (selOptions.selectedIndex === i + 1) {
+        th.scope = "row";
+        th.innerText = `${i + 1}`;
+      }
+    }
+  });
 };
