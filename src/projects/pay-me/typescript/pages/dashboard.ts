@@ -1,8 +1,7 @@
+import { faker } from "@faker-js/faker";
 import { User } from "./../entities/user";
 import { CardService, UserService } from "../service";
-import { faker } from "@faker-js/faker";
-import { CardRepository } from "../repository";
-
+import { BANK_NAME, CARD_TYPE, EXPIRE } from "../types";
 export const dashboard = (
   user: User,
   cardService: CardService,
@@ -26,10 +25,27 @@ export const dashboard = (
 				</button>
 		</form>
 </nav>
-<div class="cards"></div>
+<table class="table table-striped">
+<thead>
+  <tr>
+    <th scope="col">#</th>
+    <th scope="col">First-name</th>
+    <th scope="col">Card number</th>
+    <th scope="col">Card type</th>
+    <th scope="col">Bank name</th>
+    <th scope="col">Expire</th>
+  </tr>
+</thead>
+<tbody class="tbody">
+</tbody>
+</table>
 
 
 `);
+  const expire: EXPIRE[] = ["01/27", "23/28", "6/26", "17/29"];
+  const card: CARD_TYPE[] = ["UZCARD", "HUMO", "VISA", "MASTERCARD"];
+  const bankName: BANK_NAME[] = ["NBU", "TBC", "SQB", "GRANT"];
+  const tbody: HTMLTableElement = document.querySelector(".tbody");
   const selOptions: HTMLSelectElement = document.querySelector(
     "#inputGroupSelect01"
   );
@@ -41,17 +57,29 @@ export const dashboard = (
     selOptions.appendChild(options);
   }
 
-  function sorted() {
-    const cards: HTMLDivElement = document.querySelector(".cards");
-    for (let i = 0; i < 10; i++) {
-      let cardNumbers = faker.finance.creditCardNumber();
-      console.log(cardNumbers);
-      const div = document.createElement("p");
-      div.className = "span";
-      div.innerText = `${cardNumbers} `;
-      cards.append(div);
-    }
-  }
+  for (let i = 0; i < userService.getUserList().length; i++) {
+    const tr = document.createElement("tr");
+    const typeIdx: number = Math.floor(Math.random() * 4);
+    const th = document.createElement("th");
+    th.scope = "row";
+    th.innerText = `${i + 1}`;
+    tr.append(th);
+    tbody.appendChild(tr);
 
-  sorted();
+    const td1 = document.createElement("td");
+    const td2 = document.createElement("td");
+    const td3 = document.createElement("td");
+    const td4 = document.createElement("td");
+    const td5 = document.createElement("td");
+    tr.appendChild(td1);
+    tr.appendChild(td2);
+    tr.appendChild(td3);
+    tr.appendChild(td4);
+    tr.appendChild(td5);
+    td1.innerText = `${userService.getUserList()[i].firstName}`;
+    td2.innerText = `${cardService.cardNumbers()}`;
+    td3.innerText = `${card[i]}`;
+    td4.innerText = `${bankName[i]}`;
+    td5.innerText = `${expire[i]}`;
+  }
 };

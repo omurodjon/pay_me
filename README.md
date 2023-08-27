@@ -1,7 +1,5 @@
 # ---------- 26.07.23 ----------(71)
 
-# Checking homeworks
-
 # Netlify Deploying
 
     ✅ Drag and drop

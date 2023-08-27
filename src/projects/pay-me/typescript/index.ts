@@ -1,4 +1,4 @@
-import { login, register } from "./pages";
+import { dashboard, login, register } from "./pages";
 import { CardService, UserService } from "./service";
 
 const cardService = new CardService();

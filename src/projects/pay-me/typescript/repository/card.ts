@@ -58,4 +58,8 @@ export class CardRepository {
 
     return cards;
   }
+
+  cardNumbers() {
+    return faker.finance.creditCardNumber();
+  }
 }
