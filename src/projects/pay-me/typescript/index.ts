@@ -1,12 +1,12 @@
 import { dashboard, login, register } from "./pages";
 import { CardService, UserService } from "./service";
 
-const cardService = new CardService();
-const userService = new UserService();
+export const cardService = new CardService();
+export const userService = new UserService();
 
-function init() {
+export function init() {
   // login(cardService, userService);
-  register(cardService, userService);
+  // register(cardService, userService);
 }
 
 init();
